@@ -1,6 +1,5 @@
 <script setup>
 import { RouterView } from "vue-router";
-import QuizsView from "./views/QuizesView.vue";
 </script>
 
 <template>
