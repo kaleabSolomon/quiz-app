@@ -1,0 +1,24 @@
+{
+  "name": "aa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {},
+  "devDependencies": {
+    "hasura-cli": "^2.28.0"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.7.16",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^16.7.1",
+    "graphql-tag": "^2.12.6",
+    "helmet": "^4.6.0",
+    "morgan": "^1.10.0",
+    "vite": "^4.3.9"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
