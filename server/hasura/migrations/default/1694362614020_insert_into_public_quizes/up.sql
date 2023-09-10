@@ -1,0 +1,1 @@
+INSERT INTO "public"."quizes"("id", "name", "img") VALUES (E'8b46789f-cffe-4399-947b-884e0cf526e9', E'https://marvel-b1-cdn.bc0a.com/f00000000026007/resilienteducator.com/wp-content/uploads/2012/11/AdobeStock_60467600_cup.jpg', E'Math');

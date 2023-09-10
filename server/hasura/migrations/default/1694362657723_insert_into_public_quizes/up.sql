@@ -1,0 +1,1 @@
+INSERT INTO "public"."quizes"("id", "name", "img") VALUES (E'46d3e191-fa68-4b74-af94-052da54062e0', E'https://blogs.biomedcentral.com/on-biology/wp-content/uploads/sites/5/2017/12/DNA.png', E'Biology');
