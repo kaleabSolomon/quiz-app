@@ -1,0 +1,1 @@
+INSERT INTO "public"."quiz_questions"("question", "id", "subject_id") VALUES (E'The cones see ___ while the rods see ___', E'8870522c-6587-43f4-8153-28983f44c159', E'46d3e191-fa68-4b74-af94-052da54062e0');

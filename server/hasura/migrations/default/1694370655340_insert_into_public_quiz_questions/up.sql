@@ -1,0 +1,1 @@
+INSERT INTO "public"."quiz_questions"("question", "id", "subject_id") VALUES (E'What is Potassium\'s chemical symbol', E'de10bef0-b93c-4549-833d-bfd16a64583c', E'e26ff4c8-d070-4ff7-9c10-a236262863e1');

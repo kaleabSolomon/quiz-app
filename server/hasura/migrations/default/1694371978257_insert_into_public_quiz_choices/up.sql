@@ -1,0 +1,1 @@
+INSERT INTO "public"."quiz_choices"("id", "question_id", "choice", "isCorrect", "label") VALUES (E'8096af12-5aff-4c24-a0bc-9d6ef7e8b85a', E'977b60cf-6c89-4eb9-b021-e27c4ba7515f', E'CH4', false, E'D');

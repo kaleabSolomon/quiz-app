@@ -1,1 +1,3 @@
-- "!include public_quizes.yaml"
+- "!include public_quiz_choices.yaml"
+- "!include public_quiz_questions.yaml"
+- "!include public_quiz_types.yaml"

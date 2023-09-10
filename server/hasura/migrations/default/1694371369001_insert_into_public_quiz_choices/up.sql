@@ -1,0 +1,1 @@
+INSERT INTO "public"."quiz_choices"("id", "question_id", "choice", "isCorrect", "label") VALUES (E'7ed497cc-6bac-42ca-beba-e7ed2a07d504', E'2b4b3106-c90f-431b-947d-781c972d4bae', E'Mitochondria', true, E'A');

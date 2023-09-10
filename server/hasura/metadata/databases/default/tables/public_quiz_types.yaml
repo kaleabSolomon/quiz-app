@@ -1,0 +1,11 @@
+table:
+  name: quiz_types
+  schema: public
+array_relationships:
+  - name: quiz_questions
+    using:
+      foreign_key_constraint_on:
+        column: subject_id
+        table:
+          name: quiz_questions
+          schema: public

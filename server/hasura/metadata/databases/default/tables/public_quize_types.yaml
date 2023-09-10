@@ -1,0 +1,3 @@
+table:
+  name: quize_types
+  schema: public

@@ -1,0 +1,1 @@
+INSERT INTO "public"."quiz_questions"("question", "id", "subject_id") VALUES (E'How many oxygen molecules can hemoglobin hold', E'6a5b5d8b-66f6-4a8d-8ce6-bec610e89cb9', E'46d3e191-fa68-4b74-af94-052da54062e0');

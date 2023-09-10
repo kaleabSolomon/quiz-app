@@ -1,0 +1,1 @@
+INSERT INTO "public"."quiz_questions"("question", "id", "subject_id") VALUES (E'What is the composition of table salt', E'977b60cf-6c89-4eb9-b021-e27c4ba7515f', E'e26ff4c8-d070-4ff7-9c10-a236262863e1');
