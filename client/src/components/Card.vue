@@ -17,7 +17,7 @@ const navigateToQuiz = () => {
     <img class="w-full h-48 m-0" :src="quiz.img" alt="course image" />
     <div class="card-text py-0 px-2.5">
       <h2 class="font-bold">{{ quiz.name }}</h2>
-      <p>{{ quiz.questions.length }} questions</p>
+      <p>{{ quiz.quiz_questions.length }} questions</p>
     </div>
   </div>
 </template>

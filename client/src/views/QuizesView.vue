@@ -1,7 +1,7 @@
 <script setup>
 import axios from "axios";
 import allQuizzes from "../api/queries";
-// import Card from "../components/Card.vue";
+import Card from "../components/Card.vue";
 // import q from "../assets/data/quizes.json";
 import { ref, watch } from "vue";
 let originalQuizes;
@@ -51,8 +51,7 @@ watch(search, () => {
     </header>
     <div class="flex flex-wrap mt-10">
       <p v-if="quizes.length === 0">{{ console.log("loading") }}</p>
-      <p v-else v-for="quiz in quizes">{{ console.log(quiz.name) }}</p>
-      <!-- <Card v-for="quiz in quizes.quiz_types" :key="quiz.id" :quiz="quiz" /> -->
+      <Card v-else v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
     </div>
   </div>
 </template>
