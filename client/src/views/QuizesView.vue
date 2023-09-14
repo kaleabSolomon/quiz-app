@@ -1,23 +1,46 @@
 <script setup>
-import Card from "../components/Card.vue";
-import q from "../assets/data/quizes.json";
+import axios from "axios";
+import allQuizzes from "../api/queries";
+// import Card from "../components/Card.vue";
+// import q from "../assets/data/quizes.json";
 import { ref, watch } from "vue";
-
-const quizes = ref(q);
+let originalQuizes;
+const quizes = ref([]);
 const search = ref("");
+const endpoint = "http://localhost:8080/v1/graphql";
+axios
+  .post(
+    endpoint,
+    { query: allQuizzes },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        "x-hasura-admin-secret": "myadminsecretkey",
+      },
+    }
+  )
+  .then((response) => {
+    const result = response.data.data;
+    quizes.value = result.quiz_types;
+    originalQuizes = quizes.value;
+  })
+  .catch((error) => {
+    // Handle any errors here
+    console.error(error);
+  });
 
 // use watch to apply searching
 // watch accepts 2 parameters: the state being monitored and a callback function to be executed when the state changes.
-// watch(search, () => {
-//   quizes.value = q.filter((quiz) =>
-//     quiz.name.toLowerCase().includes(search.value.toLowerCase())
-//   );
-// });
+watch(search, () => {
+  quizes.value = originalQuizes.filter((quiz) =>
+    quiz.name.toLowerCase().includes(search.value.toLowerCase())
+  );
+});
 </script>
 
 <template>
   <div>
-    <!-- <header class="mb-2.5 mt-7 flex items-center">
+    <header class="mb-2.5 mt-7 flex items-center">
       <h1 class="font-bold mr-7">Quizes</h1>
       <input
         v-model.trim="search"
@@ -25,9 +48,11 @@ const search = ref("");
         type="text"
         placeholder="Search..."
       />
-    </header> -->
+    </header>
     <div class="flex flex-wrap mt-10">
-      <Card v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
+      <p v-if="quizes.length === 0">{{ console.log("loading") }}</p>
+      <p v-else v-for="quiz in quizes">{{ console.log(quiz.name) }}</p>
+      <!-- <Card v-for="quiz in quizes.quiz_types" :key="quiz.id" :quiz="quiz" /> -->
     </div>
   </div>
 </template>
