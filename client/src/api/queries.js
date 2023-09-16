@@ -6,13 +6,6 @@ const allQuizzes = `
             img
             quiz_questions {
               id
-              question
-              quiz_choices {
-                id
-                label
-                choice
-                isCorrect
-              }
             }
           }
     }

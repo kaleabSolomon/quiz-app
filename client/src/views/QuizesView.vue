@@ -50,7 +50,7 @@ watch(search, () => {
       />
     </header>
     <div class="flex flex-wrap mt-10">
-      <p v-if="quizes.length === 0">{{ console.log("loading") }}</p>
+      <p v-if="quizes.length === 0">loading quizes</p>
       <Card v-else v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
     </div>
   </div>
