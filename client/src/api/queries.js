@@ -10,5 +10,21 @@ const allQuizzes = `
           }
     }
 `;
-
-export default allQuizzes;
+const getQuizzesAndChoices = `
+    query quizAndChoices($subjectId:ID!){
+      quiz_types(id: $subjectId){
+        name
+        quiz_questions {
+          id
+          question
+          quiz_choices {
+            id
+            label
+            choice
+            isCorrect
+          }
+        }
+      }
+    }
+`;
+export default { allQuizzes, getQuizzesAndChoices };
