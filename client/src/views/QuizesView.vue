@@ -1,6 +1,6 @@
 <script setup>
 import axios from "axios";
-import allQuizzes from "../api/queries";
+import queries from "../api/queries";
 import Card from "../components/Card.vue";
 // import q from "../assets/data/quizes.json";
 import { ref, watch } from "vue";
@@ -11,7 +11,7 @@ const endpoint = "http://localhost:8080/v1/graphql";
 axios
   .post(
     endpoint,
-    { query: allQuizzes },
+    { query: queries.allQuizzes },
     {
       headers: {
         "Content-Type": "application/json",

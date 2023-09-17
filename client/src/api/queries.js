@@ -10,21 +10,23 @@ const allQuizzes = `
           }
     }
 `;
+
 const getQuizzesAndChoices = `
-    query quizAndChoices($subjectId:ID!){
-      quiz_types(id: $subjectId){
-        name
-        quiz_questions {
-          id
-          question
-          quiz_choices {
-            id
-            label
-            choice
-            isCorrect
-          }
-        }
+query quizAndChoices($quizTypeId: uuid!) {
+  quiz_types(where: {id: {_eq: $quizTypeId}}) {
+    id
+    quiz_questions {
+      id
+      question
+      quiz_choices {
+        id
+        label
+        choice
+        isCorrect
       }
     }
+  }
+}
+
 `;
 export default { allQuizzes, getQuizzesAndChoices };
