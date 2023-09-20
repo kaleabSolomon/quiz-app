@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRoute } from "vue-router";
 import Question from "../components/Question.vue";
 import QuizHeader from "../components/QuizHeader.vue";
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import quizes from "../assets/data/quizes.json";
 import Result from "../components/Result.vue";
 import queries from "../api/queries";
@@ -11,8 +11,8 @@ const route = useRoute();
 // get the id of the quiz
 const quizId = route.params.id;
 
-const quiz = quizes.find((q) => q.id === quizId);
-
+const quiz = ref({});
+const isLoading = ref(true);
 const currentQuestionIndex = ref(0);
 const numberOfCorrectAnswers = ref(0);
 const showResult = ref(false);
@@ -33,32 +33,41 @@ axios
     }
   )
   .then((response) => {
-    console.log(response.data.data);
+    const result = response.data.data;
+    quiz.value = result.quiz_types[0];
+    isLoading.value = false;
   })
   .catch((error) => {
     console.log(error);
+    isLoading.value = false;
   });
 
-// const questionStatus = ref(
-//   `${currentQuestionIndex.value}/${quiz.questions.length}`
-// );
-// watch(
-//   () => currentQuestionIndex.value,
-//   () => {
-//     questionStatus.value = `${currentQuestionIndex.value} / ${quiz.questions.length}`;
-//   }
-// );
 const questionStatus = computed(() => {
-  return `${currentQuestionIndex.value} / ${quiz.questions.length}`;
+  if (isLoading.value || !quiz.quiz_questions) {
+    return "";
+  }
+  return `${currentQuestionIndex.value} / ${quiz.value.quiz_questions.length}`;
 });
-const barPercentage = computed(
-  () => `${(currentQuestionIndex.value / quiz.questions.length) * 100}%`
-);
+
+watch(quiz, () => {
+  questionStatus.value; // Trigger the computed property when quiz changes
+});
+const barPercentage = computed(() => {
+  if (!isLoading.value && quiz.value.quiz_questions)
+    return `${
+      ((currentQuestionIndex.value + 1) / quiz.value.quiz_questions.length) *
+      100
+    }%`;
+  return `0%`;
+});
 
 const onOptionSelected = (isCorrect) => {
   if (isCorrect) numberOfCorrectAnswers.value++;
-  if (quiz.questions.length - 1 == currentQuestionIndex.value)
-    showResult.value = true;
+  if (!isLoading.value && quiz.value.quiz_questions) {
+    if (quiz.quiz_questions.length - 1 == currentQuestionIndex.value)
+      // if (currentQuestionIndex.value === quiz.value.quiz_questions.length - 1)
+      showResult.value = true;
+  }
   currentQuestionIndex.value++;
 };
 </script>
@@ -71,15 +80,17 @@ const onOptionSelected = (isCorrect) => {
     />
     <div>
       <Question
-        v-if="!showResult"
+        v-if="!showResult && !isLoading"
         @selectOption="onOptionSelected"
-        :question="quiz.questions[currentQuestionIndex]"
+        :question="quiz.quiz_questions[currentQuestionIndex]"
       />
       <Result
-        :quizQuestionLength="quiz.questions.length"
-        :numberOfCorrectAnswers="numberOfCorrectAnswers"
         v-else
-      />
+        v-if="!isLoading && quiz.value.quiz_questions"
+        :quizQuestionLength="quiz.quiz_questions.length"
+        :numberOfCorrectAnswers="numberOfCorrectAnswers"
+        >{{ console.log(quiz.quiz_questions) }}</Result
+      >
     </div>
   </div>
 </template>
