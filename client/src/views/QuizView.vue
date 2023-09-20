@@ -64,8 +64,8 @@ const barPercentage = computed(() => {
 const onOptionSelected = (isCorrect) => {
   if (isCorrect) numberOfCorrectAnswers.value++;
   if (!isLoading.value && quiz.value.quiz_questions) {
-    if (quiz.quiz_questions.length - 1 == currentQuestionIndex.value)
-      // if (currentQuestionIndex.value === quiz.value.quiz_questions.length - 1)
+    // if (quiz.quiz_questions.length - 1 == currentQuestionIndex.value)
+    if (currentQuestionIndex.value === quiz.value.quiz_questions.length - 1)
       showResult.value = true;
   }
   currentQuestionIndex.value++;
@@ -86,7 +86,7 @@ const onOptionSelected = (isCorrect) => {
       />
       <Result
         v-else
-        v-if="!isLoading && quiz.value.quiz_questions"
+        v-if="!isLoading && quiz.quiz_questions"
         :quizQuestionLength="quiz.quiz_questions.length"
         :numberOfCorrectAnswers="numberOfCorrectAnswers"
         >{{ console.log(quiz.quiz_questions) }}</Result
