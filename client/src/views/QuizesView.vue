@@ -8,6 +8,7 @@ let originalQuizes;
 const quizes = ref([]);
 const search = ref("");
 const endpoint = "http://localhost:8080/v1/graphql";
+const adminSecret = "myadminsecretkey";
 axios
   .post(
     endpoint,
@@ -15,7 +16,7 @@ axios
     {
       headers: {
         "Content-Type": "application/json",
-        "x-hasura-admin-secret": "myadminsecretkey",
+        "x-hasura-admin-secret": adminSecret,
       },
     }
   )
