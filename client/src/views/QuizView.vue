@@ -55,8 +55,7 @@ watch(quiz, () => {
 const barPercentage = computed(() => {
   if (!isLoading.value && quiz.value.quiz_questions)
     return `${
-      ((currentQuestionIndex.value + 1) / quiz.value.quiz_questions.length) *
-      100
+      (currentQuestionIndex.value / quiz.value.quiz_questions.length) * 100
     }%`;
   return `0%`;
 });
